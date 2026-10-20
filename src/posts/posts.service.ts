@@ -105,8 +105,9 @@ async testHash(){
 }
 async getHashTest() {
   const name = await this.redisService.hGet('user:1', 'name');
-
+  console.log("привет гитхаб")
   return name;
+
 }
 async getHashAllTest() {
   return await this.redisService.hGetAll('user:1');
