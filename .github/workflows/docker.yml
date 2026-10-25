@@ -33,20 +33,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: .
           file: Dockerfile
           push: true
-          
-  deploy:
-    needs: docker
-    runs-on: self-hosted
-
-    steps:
-      - name: Pull latest image
-        run: docker pull hlebusheek/minisocial-backend:latest
+          tags: hlebusheek/minisocial-backend:latest
 
       - name: Deploy container
         shell: powershell
