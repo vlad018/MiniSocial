@@ -39,4 +39,20 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: hlebusheek/minisocial-backend:latest
+          
+  deploy:
+    needs: docker
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull latest image
+        run: docker pull hlebusheek/minisocial-backend:latest
+
+      - name: Deploy container
+        shell: powershell
+        run: |
+          docker rm -f minisocial-backend
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "Old container was not running; continuing."
+          }
+          docker run -d --name minisocial-backend -p 3001:3000 hlebusheek/minisocial-backend:latest
