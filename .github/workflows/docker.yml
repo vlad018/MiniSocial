@@ -43,7 +43,7 @@ jobs:
           tags: hlebusheek/minisocial-backend:latest
 
       - name: Deploy container
-        shell: powershell
+        shell: pwsh
         run: |
           docker rm -f minisocial-backend
           if ($LASTEXITCODE -ne 0) {
