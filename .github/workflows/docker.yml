@@ -51,7 +51,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+
       - name: Deploy with Docker Compose
         run: |
-          docker compose pull backend
-          docker compose up -d --no-deps backend
+          docker compose -p backend pull backend
+          docker compose -p backend up -d --no-deps backend
